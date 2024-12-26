@@ -1,0 +1,128 @@
+[gd_scene load_steps=11 format=3 uid="uid://o6vhctoqf1qc"]
+
+[ext_resource type="Script" path="res://scenes/buildings/small_house.gd" id="1_lj82c"]
+[ext_resource type="AudioStream" uid="uid://b6uev7u86bdx5" path="res://assets/audio/door-knock.ogg" id="2_4bim3"]
+[ext_resource type="Texture2D" uid="uid://b7yveoc30mw8" path="res://assets/textures/buildings/small_houses/house1.png" id="2_gjsdc"]
+[ext_resource type="AudioStream" uid="uid://dmp07f4pff8k4" path="res://assets/audio/rain-gutter-loop_0.mp3" id="4_fgf3q"]
+
+[sub_resource type="Gradient" id="Gradient_dbijk"]
+offsets = PackedFloat32Array(0.208696, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1ch6l"]
+gradient = SubResource("Gradient_dbijk")
+fill = 1
+fill_from = Vector2(0.460123, 0.610429)
+fill_to = Vector2(0, 0.54908)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yhisk"]
+emission_shape = 1
+emission_sphere_radius = 7.0
+direction = Vector3(1, -0.5, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.341176, 0.305882, 0.721569, 1)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(253, 140)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g2vht"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(160, 1, 0)
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 3.0
+color = Color(0.596078, 0.713726, 0.909804, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8wvi"]
+size = Vector2(248.572, 165.714)
+
+[node name="SmallHouse" type="StaticBody2D" groups=["has_action"]]
+y_sort_enabled = true
+script = ExtResource("1_lj82c")
+texture = "red"
+in_rain = false
+
+[node name="knockSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4bim3")
+volume_db = 3.0
+
+[node name="dounspout_sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(148, -36)
+stream = ExtResource("4_fgf3q")
+volume_db = 7.0
+autoplay = true
+max_distance = 900.0
+attenuation = 2.5
+
+[node name="shadow" type="PointLight2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-58, -68)
+scale = Vector2(5.28711, 3.57852)
+energy = 0.5
+blend_mode = 1
+range_z_max = -1
+texture = SubResource("GradientTexture2D_1ch6l")
+
+[node name="downspout_spray" type="GPUParticles2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(155, 24)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_yhisk")
+lifetime = 0.5
+
+[node name="foundation" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(2.5, -45)
+shape = SubResource("2")
+
+[node name="roof_drips" type="GPUParticles2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(0, -116)
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_g2vht")
+lifetime = 1.72
+explosiveness = 0.15
+randomness = 0.24
+fixed_fps = 5
+fract_delta = false
+
+[node name="light1" type="PointLight2D" parent="."]
+position = Vector2(17, -51)
+scale = Vector2(1.23438, 3.25)
+enabled = false
+energy = 0.5
+texture = SubResource("GradientTexture2D_1ch6l")
+
+[node name="light2" type="PointLight2D" parent="."]
+position = Vector2(16, -100)
+scale = Vector2(1.23438, 0.921875)
+enabled = false
+energy = 0.5
+texture = SubResource("GradientTexture2D_1ch6l")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(1.5, -1)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_gjsdc")
+offset = Vector2(0, -230)
+
+[node name="doormat" type="Area2D" parent="."]
+position = Vector2(-11.1121, 34.3505)
+scale = Vector2(0.35, 0.35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doormat"]
+position = Vector2(70.3202, 47.57)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_x8wvi")
+
+[connection signal="body_entered" from="doormat" to="." method="_on_doormat_body_entered"]
+[connection signal="body_exited" from="doormat" to="." method="_on_doormat_body_exited"]

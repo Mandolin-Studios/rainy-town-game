@@ -1,0 +1,12 @@
+[gd_resource type="AudioStreamPlaylist" load_steps=4 format=3 uid="uid://deo5tmxk7crt0"]
+
+[ext_resource type="AudioStream" uid="uid://6fvmqfjlaio7" path="res://assets/audio/Drink_03.wav" id="1_0bwa1"]
+[ext_resource type="AudioStream" uid="uid://de0sap6w1jofs" path="res://assets/audio/Drink_06.wav" id="2_22xm8"]
+[ext_resource type="AudioStream" uid="uid://cj8hb8as8t0e5" path="res://assets/audio/Drink_05.wav" id="3_4wa2x"]
+
+[resource]
+loop = false
+stream_count = 3
+stream_0 = ExtResource("1_0bwa1")
+stream_1 = ExtResource("2_22xm8")
+stream_2 = ExtResource("3_4wa2x")

@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://uwhwsnjueb4d"]
+
+[ext_resource type="Texture2D" uid="uid://en300vu5u4r4" path="res://assets/textures/weather/snow.png" id="1"]
+[ext_resource type="Script" path="res://scenes/weather/Weather.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://d2r3r22pjalhl" path="res://assets/textures/weather/rain.png" id="3_nivog"]
+
+[sub_resource type="CanvasItemMaterial" id="1"]
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="2"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+gravity = Vector3(0, 10, 0)
+
+[sub_resource type="CanvasItemMaterial" id="3"]
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="4"]
+emission_shape_scale = Vector3(1, 500, 1)
+emission_shape = 3
+emission_box_extents = Vector3(960, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 330.0
+initial_velocity_max = 370.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_over_velocity_min = 100.0
+scale_over_velocity_max = 100.0
+
+[sub_resource type="CanvasItemMaterial" id="5"]
+blend_mode = 2
+
+[node name="Weather" type="Node2D"]
+z_index = 10
+script = ExtResource("2")
+weatherType = "rain"
+size = 0.8
+
+[node name="Snow" type="GPUParticles2D" parent="."]
+material = SubResource("1")
+emitting = false
+amount = 500
+process_material = SubResource("2")
+texture = ExtResource("1")
+lifetime = 10.0
+speed_scale = 0.5
+visibility_rect = Rect2(-100, -100, 200, 500)
+
+[node name="Rain" type="GPUParticles2D" parent="."]
+z_index = 2
+material = SubResource("3")
+position = Vector2(576, 352)
+emitting = false
+amount = 1000
+process_material = SubResource("4")
+texture = ExtResource("3_nivog")
+lifetime = 3.75
+preprocess = 20.0
+speed_scale = 0.5
+fixed_fps = 5
+visibility_rect = Rect2(-5000, -300, 10000, 600)
+
+[node name="Darkness" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="Tween" type="Tween" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null

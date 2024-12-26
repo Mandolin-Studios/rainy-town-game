@@ -1,0 +1,30 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=10 format=3 uid="uid://blbreh07tqv2u"]
+
+[ext_resource type="AudioStream" uid="uid://bbhm7v2od8kc0" path="res://assets/audio/Footstep/FootstepGrass01.wav" id="1_hehi5"]
+[ext_resource type="AudioStream" uid="uid://b3aghusrfvl1t" path="res://assets/audio/Footstep/FootstepGrass02.wav" id="2_6dj6j"]
+[ext_resource type="AudioStream" uid="uid://0l8avxagsrvk" path="res://assets/audio/Footstep/FootstepGrass03.wav" id="3_7ambf"]
+[ext_resource type="AudioStream" uid="uid://bs74lum1q1wnu" path="res://assets/audio/Footstep/FootstepGrass04.wav" id="4_7q57c"]
+[ext_resource type="AudioStream" uid="uid://cdoby6fnj57c8" path="res://assets/audio/Footstep/FootstepGrass05.wav" id="5_h56ef"]
+[ext_resource type="AudioStream" uid="uid://1ilw1re36w8x" path="res://assets/audio/Footstep/FootstepGrass06.wav" id="6_etxrc"]
+[ext_resource type="AudioStream" uid="uid://jjhoje6y88v7" path="res://assets/audio/Footstep/FootstepGrass07.wav" id="7_maw4s"]
+[ext_resource type="AudioStream" uid="uid://dyv7ves3ge6i1" path="res://assets/audio/Footstep/FootstepGrass08.wav" id="8_racjf"]
+[ext_resource type="AudioStream" uid="uid://bjx84idkaw74q" path="res://assets/audio/Footstep/FootstepGrass09.wav" id="9_wr7d2"]
+
+[resource]
+playback_mode = 1
+streams_count = 9
+stream_0/stream = ExtResource("1_hehi5")
+stream_1/stream = ExtResource("2_6dj6j")
+stream_1/weight = 5.0
+stream_2/stream = ExtResource("3_7ambf")
+stream_2/weight = 5.0
+stream_3/stream = ExtResource("4_7q57c")
+stream_4/stream = ExtResource("5_h56ef")
+stream_4/weight = 0.0
+stream_5/stream = ExtResource("6_etxrc")
+stream_5/weight = 0.5
+stream_6/stream = ExtResource("7_maw4s")
+stream_7/stream = ExtResource("8_racjf")
+stream_7/weight = 5.0
+stream_8/stream = ExtResource("9_wr7d2")
+stream_8/weight = 5.0
